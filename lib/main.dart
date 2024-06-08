@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waterriderdemo/screens/cubit/location_cubit.dart';
 import 'package:waterriderdemo/screens/forget_password.dart';
-import 'screens/passenger_screen.dart';
+import 'screens/my_trips.dart';
 import 'package:waterriderdemo/screens/signupverification_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/splash_screen.dart';
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/signup': (context) => const SignUpScreen(),
           '/signupVerification': (context) => const SignUpVerificationScreen(),
-          '/home': (context) => const PassengerScreen(),
+          '/home': (context) => const MyTripsScreen(),
           '/forgetPassword': (context) => const ForgetPasswordScreen(),
         },
         onGenerateRoute: (settings) {

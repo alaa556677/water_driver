@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import '../../screens/google_map_screen.dart';
 
 class CardTripWidget extends StatelessWidget{
-  final TripDataModel tripDataModel;
-  const CardTripWidget({super.key, required this.tripDataModel});
+  final CityDataModel cityDataModel;
+  const CardTripWidget({super.key, required this.cityDataModel});
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -19,51 +20,41 @@ class CardTripWidget extends StatelessWidget{
       ),
       child: Column(
         children: [
-          RowCardData(titleData: "Location : ", valueData: tripDataModel.location,),
+          RowCardData(titleData: "Destination : ", valueData: cityDataModel.cityName,),
           const SizedBox(height: 8,),
-          RowCardData(titleData: "Destination : ", valueData: tripDataModel.destination,),
+          RowCardData(titleData: "Price : ", valueData: cityDataModel.price,),
           const SizedBox(height: 8,),
-          RowCardData(titleData: "Price : ", valueData: tripDataModel.price,),
+          RowCardData(titleData: "A-Time : ", valueData: cityDataModel.arrivalTime,),
           const SizedBox(height: 8,),
-          Row(
-            children: [
-              Expanded(child: RowCardData(titleData: "E-Time : ", valueData: tripDataModel.establishTime,)),
-              const SizedBox(width: 12,),
-              Expanded(child: RowCardData(titleData: "A-Time : ", valueData: tripDataModel.arrivalTime,)),
-            ],
-          ),
+          RowCardData(titleData: "Distance : ", valueData: cityDataModel.kiloMeter,),
           const SizedBox(height: 8,),
-          Row(
-            children: [
-              Expanded(child: RowCardData(titleData: "R-Name : ", valueData: tripDataModel.riderName,)),
-              const SizedBox(width: 12,),
-              Expanded(child: RowCardData(titleData: "R-Phone : ", valueData: tripDataModel.riderPhone,)),
-            ],
-          ),
+          RowCardData(titleData: "Driver Name : ", valueData: cityDataModel.driverName,),
+          const SizedBox(height: 8,),
+          RowCardData(titleData: "Driver Phone : ", valueData: cityDataModel.driverPhone,),
         ],
       ),
     );
   }
 }
 
-class TripDataModel{
-  final String location;
-  final String destination;
-  final String price;
-  final String establishTime;
-  final String arrivalTime;
-  final String riderName;
-  final String riderPhone;
-  TripDataModel({
-    required this.location,
-    required this.destination,
-    required this.price,
-    required this.establishTime,
-    required this.arrivalTime,
-    required this.riderName,
-    required this.riderPhone
-  });
-}
+// class TripDataModel{
+//   final String location;
+//   final String destination;
+//   final String price;
+//   final String establishTime;
+//   final String arrivalTime;
+//   final String riderName;
+//   final String riderPhone;
+//   TripDataModel({
+//     required this.location,
+//     required this.destination,
+//     required this.price,
+//     required this.establishTime,
+//     required this.arrivalTime,
+//     required this.riderName,
+//     required this.riderPhone
+//   });
+// }
 
 textStyleForCard(){
   return const TextStyle(

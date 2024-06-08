@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:waterriderdemo/core/navigation_constants.dart';
-import 'package:waterriderdemo/screens/passenger_screen.dart';
+import 'package:waterriderdemo/screens/my_trips.dart';
 
 // SignUpScreen is a stateful widget
 class ProfileScreen extends StatefulWidget {
@@ -73,7 +73,7 @@ class ProfileScreenState extends State<ProfileScreen> {
         'birthday': birthday,
       }).then((value){
         setState(() {
-          navigateTo(context, const PassengerScreen());
+          navigateTo(context, const MyTripsScreen());
         });
       });
     });

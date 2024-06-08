@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waterriderdemo/core/navigation_constants.dart';
-import 'package:waterriderdemo/screens/passenger_screen.dart';
+import 'package:waterriderdemo/screens/google_map_screen.dart';
+import 'package:waterriderdemo/screens/my_trips.dart';
 
 class PreHomeScreen extends StatelessWidget {
   const PreHomeScreen({super.key});
@@ -30,7 +31,7 @@ class PreHomeScreen extends StatelessWidget {
               height: 48,
               child: ElevatedButton.icon(
                 onPressed: () {
-                  navigateTo(context, const PassengerScreen());
+                  navigateTo(context, const GoogleMapScreen());
                 },
                 icon: const Icon(Icons.person, color: Colors.black),
                 label: const Text('Passenger', style: TextStyle(color: Colors.black)),

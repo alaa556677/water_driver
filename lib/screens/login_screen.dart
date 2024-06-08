@@ -175,7 +175,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             color: Colors.red,
                             onPressed: () async {
-                              UserCredential cred = await signInWithGoogle();
+                              UserCredential cred = await signInWithGoogle().then((value) => navigateAndRemove(context, const PreHomeScreen()));
                             },
                           ),
                           IconButton(
