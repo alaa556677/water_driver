@@ -13,14 +13,14 @@ class SignUpScreen extends StatefulWidget {
   @override
   SignUpScreenState createState() => SignUpScreenState(); // Creates the state for this widget
 }
-
+CollectionReference users = FirebaseFirestore.instance.collection('users');
 class SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>(); // Key to identify the form
   final _emailController = TextEditingController(); // Controller for the email input
   final _passwordController = TextEditingController(); // Controller for the password input
   final _confirmPasswordController = TextEditingController(); // Controller for the confirm password input
   final _phoneController = TextEditingController(); // Controller for the phone number input
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+
 
   final _dateController = TextEditingController(); // Controller for the phone number input
 

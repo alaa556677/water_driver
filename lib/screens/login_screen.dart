@@ -175,7 +175,17 @@ class LoginScreen extends StatelessWidget {
                             ),
                             color: Colors.red,
                             onPressed: () async {
-                              UserCredential cred = await signInWithGoogle().then((value) => navigateAndRemove(context, const PreHomeScreen()));
+                              await signInWithGoogle().then((value){
+                                users.doc(FirebaseAuth.instance.currentUser?.uid).set({
+                                  'emailAddress': FirebaseAuth.instance.currentUser?.email.toString(),
+                                  'password': "",
+                                  'phone': FirebaseAuth.instance.currentUser?.phoneNumber ?? "",
+                                  'gender': "",
+                                  'birthday': "",
+                                  'uid': FirebaseAuth.instance.currentUser?.uid,
+                                });
+                                navigateAndRemove(context, const PreHomeScreen());
+                              });
                             },
                           ),
                           IconButton(
