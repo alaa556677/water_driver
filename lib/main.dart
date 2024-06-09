@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:waterriderdemo/screens/cubit/location_cubit.dart';
 import 'package:waterriderdemo/screens/forget_password.dart';
+import 'core/shared_preferences.dart';
 import 'screens/my_trips.dart';
 import 'package:waterriderdemo/screens/signupverification_screen.dart';
 import 'screens/login_screen.dart';
@@ -12,6 +13,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

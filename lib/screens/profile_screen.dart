@@ -5,7 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:waterriderdemo/core/navigation_constants.dart';
+import 'package:waterriderdemo/core/shared_preferences.dart';
 import 'package:waterriderdemo/screens/my_trips.dart';
+
+import '../core/constants.dart';
 
 // SignUpScreen is a stateful widget
 class ProfileScreen extends StatefulWidget {
@@ -23,7 +26,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController dateController = TextEditingController();
-  String gender = '';
+  String gender = 'Male';
 
   @override
   void dispose() {
@@ -52,7 +55,7 @@ class ProfileScreenState extends State<ProfileScreen> {
         profileData = value.docs[0].data();
       }
       setState(() {
-        emailController.text = profileData['emailAddress'] ?? "";
+        emailController.text = profileData['emailAddress'] ?? "" ;
         passwordController.text = profileData['password'] ?? "";
         phoneController.text = profileData['phone'] ?? "";
         dateController.text = profileData['birthday'] ?? "";
@@ -167,7 +170,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(8)),
                     ),
                   ),
-                  value: gender,
+                  value: gender == "" ? 'Male' : gender,
                   onChanged: (String? newValue) {
                     gender = newValue!;
                     print("gender = $gender");
@@ -214,38 +217,40 @@ class ProfileScreenState extends State<ProfileScreen> {
                   },
                 ),
                 const SizedBox(height: 50),
-                Align(
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * .8,
-                    height: 48,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12)
-                    ),
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        if(_formKey.currentState!.validate() && gender != ""){
-                          updateProfile(
-                              emailAddress: emailController.text,
-                              password: passwordController.text,
-                              phone: phoneController.text,
-                              birthday: dateController.text,
-                              genderType: gender
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        foregroundColor: Colors.blue.withOpacity(.9)
+                if(!CacheHelper.getData(key: Constants.fromGoogle.toString()))...[
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      width: MediaQuery.of(context).size.width * .8,
+                      height: 48,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12)
                       ),
-                      child: const Text('Update', style: TextStyle(
-                          fontSize: 16
-                      ),),
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          if(_formKey.currentState!.validate() && gender != ""){
+                            updateProfile(
+                                emailAddress: emailController.text,
+                                password: passwordController.text,
+                                phone: phoneController.text,
+                                birthday: dateController.text,
+                                genderType: gender
+                            );
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            foregroundColor: Colors.blue.withOpacity(.9)
+                        ),
+                        child: const Text('Update', style: TextStyle(
+                            fontSize: 16
+                        ),),
+                      ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 20),
+                  const SizedBox(height: 20),
+                ]
               ],
             ),
           ),

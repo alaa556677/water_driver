@@ -244,8 +244,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                     showDatePicker(
                         context: context,
                         initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.parse ('2100-10-20')
+                        firstDate: DateTime.parse ('1990-10-20'),
+                        lastDate: DateTime.parse ('2050-10-20')
                     ).then((value){
                       _dateController.text = DateFormat.yMMMd().format(value!);
                     });

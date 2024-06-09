@@ -5,7 +5,6 @@ import 'package:waterriderdemo/screens/my_trips.dart';
 
 class PreHomeScreen extends StatelessWidget {
   const PreHomeScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

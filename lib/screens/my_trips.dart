@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:waterriderdemo/core/navigation_constants.dart';
+import 'package:waterriderdemo/core/shared_preferences.dart';
 import 'package:waterriderdemo/screens/login_screen.dart';
 import 'package:waterriderdemo/screens/pre_home_screen.dart';
 import 'package:waterriderdemo/screens/profile_screen.dart';
+import '../core/constants.dart';
 import '../core/widgets/card_trip_widget.dart';
 import '../core/widgets/listTile_drawer.dart';
 import 'google_map_screen.dart';
@@ -60,7 +62,7 @@ class _MyTripsScreenState extends State<MyTripsScreen> {
             const SizedBox(height: 40),
             ListTileDrawer(title: "Home", leadingWidget: const Icon(Icons.home_filled), onTap: (){
               scaffoldKey.currentState?.closeDrawer();
-              navigateTo(context, const PreHomeScreen());
+              navigateTo(context, PreHomeScreen());
             },),
             ListTileDrawer(title: "Profile", leadingWidget: const Icon(Icons.person), onTap: (){
               scaffoldKey.currentState?.closeDrawer();
@@ -72,9 +74,11 @@ class _MyTripsScreenState extends State<MyTripsScreen> {
             },),
             ListTileDrawer(title: "Log Out", leadingWidget: const Icon(Icons.logout), onTap: () async {
               scaffoldKey.currentState?.closeDrawer();
-              await FirebaseAuth.instance.signOut().then((value){
-                navigateAndRemove(context, LoginScreen());
-              });
+              if(CacheHelper.getData(key: Constants.fromGoogle.toString()) == true){
+                await signOut(context).then((value) => navigateAndRemove(context, LoginScreen()));
+              }else{
+                await FirebaseAuth.instance.signOut().then((value) => navigateAndRemove(context, LoginScreen()));
+              }
             },),
           ],
         ),
