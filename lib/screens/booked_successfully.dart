@@ -31,6 +31,7 @@ class BookedSuccessfullyScreen extends StatelessWidget{
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
+                  fontFamily: "Pacifico"
                 ),
               ),
             ],
@@ -48,7 +49,7 @@ class BookedSuccessfullyScreen extends StatelessWidget{
                 padding: const EdgeInsets.symmetric(vertical: 20), // Button padding
               ),
               onPressed: () => navigateAndReplace(context, const GoogleMapScreen()), // Handle sign up button press
-              child: const Text('Get Back To Booking Service', style: TextStyle(color: Colors.blue, fontSize: 16)), // Button text
+              child: const Text('Get Back To Booking Service', style: TextStyle(color: Colors.blue, fontSize: 16, fontFamily: "Pacifico")), // Button text
             ),
           ),
         ],

@@ -471,17 +471,24 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                         const SizedBox(
                           height: 8,
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6, horizontal: 80),
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(color: Colors.white, width: 1.5),
-                          ),
-                          child: const Text(
-                            "Cancel",
-                            style: TextStyle(color: Colors.black),
+                        GestureDetector(
+                          onTap: (){
+                            setState(() {
+                              city = "";
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 6, horizontal: 80),
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(color: Colors.white, width: 1.5),
+                            ),
+                            child: const Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.black),
+                            ),
                           ),
                         ),
                         const SizedBox(
