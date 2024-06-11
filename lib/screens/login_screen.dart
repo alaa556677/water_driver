@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:waterriderdemo/core/navigation_constants.dart';
-import 'package:waterriderdemo/core/shared_preferences.dart';
 import 'package:waterriderdemo/screens/pre_home_screen.dart';
 import 'package:waterriderdemo/screens/profile_screen.dart';
 import 'package:waterriderdemo/screens/signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../core/constants.dart';
 import 'forget_password.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -27,7 +25,6 @@ class LoginScreen extends StatelessWidget {
           password: _passwordController.text.trim(),
         );
         if (navigator.mounted) {
-          CacheHelper.saveData(key: Constants.fromGoogle.toString() , value: false);
           navigateAndRemove(context, const PreHomeScreen());
         }
       } on FirebaseAuthException catch (e) {
@@ -92,9 +89,6 @@ class LoginScreen extends StatelessWidget {
       idToken: googleAuth?.idToken,);
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +185,6 @@ class LoginScreen extends StatelessWidget {
                                   'birthday': "",
                                   'uid': FirebaseAuth.instance.currentUser?.uid,
                                 });
-                                CacheHelper.saveData(key: Constants.fromGoogle.toString(), value: true);
                                 navigateAndRemove(context, const PreHomeScreen());
                               });
                             },
@@ -233,14 +226,4 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-Future<void> signOut(BuildContext context) async {
-  GoogleSignIn().signOut().then((value){
-    navigateAndRemove(context, LoginScreen());
-  }).catchError((error){
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(error.toString(), style: const TextStyle(color: Colors.red))),
-    );
-  });
 }

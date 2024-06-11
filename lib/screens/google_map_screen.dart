@@ -9,9 +9,7 @@ import 'package:location/location.dart';
 import 'package:waterriderdemo/screens/pre_home_screen.dart';
 import 'package:waterriderdemo/screens/profile_screen.dart';
 import 'dart:math' as math;
-import '../core/constants.dart';
 import '../core/navigation_constants.dart';
-import '../core/shared_preferences.dart';
 import '../core/widgets/listTile_drawer.dart';
 import 'booked_successfully.dart';
 import 'cubit/location_cubit.dart';
@@ -90,7 +88,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
             const SizedBox(height: 40),
             ListTileDrawer(title: "Home", leadingWidget: const Icon(Icons.home_filled), onTap: (){
               scaffoldKey.currentState?.closeDrawer();
-              navigateTo(context, PreHomeScreen());
+              navigateTo(context, const PreHomeScreen());
             },),
             ListTileDrawer(title: "Profile", leadingWidget: const Icon(Icons.person), onTap: (){
               scaffoldKey.currentState?.closeDrawer();
@@ -102,11 +100,9 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
             },),
             ListTileDrawer(title: "Log Out", leadingWidget: const Icon(Icons.logout), onTap: () async {
               scaffoldKey.currentState?.closeDrawer();
-              if(CacheHelper.getData(key: Constants.fromGoogle.toString()) == true){
-                await signOut(context).then((value) => navigateAndRemove(context, LoginScreen()));
-              }else{
-                await FirebaseAuth.instance.signOut().then((value) => navigateAndRemove(context, LoginScreen()));
-              }
+              await FirebaseAuth.instance.signOut().then((value){
+                navigateAndRemove(context, LoginScreen());
+              });
             },),
           ],
         ),
