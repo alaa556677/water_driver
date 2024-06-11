@@ -97,9 +97,9 @@ flutter:
   # example:
 
   fonts:
-    - family: Pacifico
+    - family: Roboto
       fonts:
-        - asset: fonts/Pacifico-Regular.ttf
+        - asset: fonts/Roboto-Regular.ttf
 
 
   

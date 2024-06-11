@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                       const Text(
                         'WATER RIDER',
                         style: TextStyle(
-                          fontSize: 56.0,
+                          fontSize: 58.0,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Pacifico',
                           color: Color(0xFF00B4DA),
@@ -153,6 +153,7 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               'Forget Password?',
                               style: TextStyle(
+
                                 decoration: TextDecoration.underline,
                                 decorationColor: Colors.blue.withOpacity(.7),
                                 color: Colors.blue.withOpacity(.7),
